@@ -27,6 +27,10 @@
         "php": "^7.0.8",
         "gedmo/doctrine-extensions": "~2.4"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.8",
+        "symfony/phpunit-bridge": "^4.0"
+    },
     "autoload": {
         "psr-4": {
             "Koff\\Bundle\\CdeBundle\\": "src/"
