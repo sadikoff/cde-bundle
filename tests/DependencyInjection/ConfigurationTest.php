@@ -19,40 +19,50 @@ class ConfigurationTest extends TestCase
     private static function getBundleDefaultConfig()
     {
         return [
-            "mappings"  => [
-                "translatable" => [
-                    "type"      => "annotation",
-                    "alias"     => "Gedmo",
-                    "is_bundle" => false,
-                    "prefix"    => "Gedmo\Translatable\Entity",
-                    "dir"       => "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity",
+            'mappings' => [
+                'translatable' => [
+                    'type'      => 'annotation',
+                    'alias'     => 'Gedmo',
+                    'is_bundle' => false,
+                    'prefix'    => 'Gedmo\\Translatable\\Entity',
+                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity',
                 ],
-                "loggable"     => [
-                    "type"      => "annotation",
-                    "alias"     => "Gedmo",
-                    "is_bundle" => false,
-                    "prefix"    => "Gedmo\Loggable\Entity",
-                    "dir"       => "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity",
+                'loggable'     => [
+                    'type'      => 'annotation',
+                    'alias'     => 'Gedmo',
+                    'is_bundle' => false,
+                    'prefix'    => 'Gedmo\\Loggable\\Entity',
+                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity',
                 ],
-                "tree"         => [
-                    "type"      => "annotation",
-                    "alias"     => "Gedmo",
-                    "is_bundle" => false,
-                    "prefix"    => "Gedmo\Tree\Entity",
-                    "dir"       => "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity",
+                'sortable'     => [
+                    'type'      => 'annotation',
+                    'alias'     => 'Gedmo',
+                    'is_bundle' => false,
+                    'prefix'    => 'Gedmo\\Sortable\\Entity',
+                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Sortable/Entity',
+                ],
+                'tree'         => [
+                    'type'      => 'annotation',
+                    'alias'     => 'Gedmo',
+                    'is_bundle' => false,
+                    'prefix'    => 'Gedmo\\Tree\\Entity',
+                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity',
                 ],
             ],
-            "features" => [
-                "blameable"      => false,
-                "ip_traceable"   => false,
-                "loggable"       => false,
-                "sluggable"      => false,
-                "soft_deletable" => false,
-                "timestampable"  => false,
-                "translatable"   => false,
-                "tree"           => false,
-                "uploadable"     => false,
-            ]
+            'features' => [
+                'blameable'           => false,
+                'ip_traceable'        => false,
+                'loggable'            => false,
+                'sluggable'           => false,
+                'soft_deletable'      => false,
+                'timestampable'       => false,
+                'translatable'        => false,
+                'tree'                => false,
+                'uploadable'          => false,
+                'sortable'            => false,
+                'references'          => false,
+                'reference_integrity' => false,
+            ],
         ];
     }
 }

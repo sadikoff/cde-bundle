@@ -39,28 +39,34 @@ class KoffCdeBundleExtension extends Extension implements PrependExtensionInterf
         $doctrine = $container->getExtensionConfig('doctrine')[0];
         $injectConfig = [];
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(\dirname(__DIR__).'/../config'));
         $loader->load('services.xml');
 
         $mappings = [];
 
         foreach ($config['listeners'] as $extension => $enabled) {
-            $definitionKey = 'artemiso_doctrine_extra.listener.'.$extension;
+            $definitionKey = 'koff_cde.listener.'.$extension;
 
             if ('translatable' == $extension && $enabled) {
-                $mappings['ArtemisoTranslatable'] = $config['mappings']['translatable'];
+                $mappings['KoffCdeTranslatable'] = $config['mappings']['translatable'];
             } else {
-                $container->removeDefinition('artemiso_doctrine_extra.extension_translatable_listener');
+                $container->removeDefinition('koff_cde.extension_translatable_listener');
             }
 
             if ('loggable' == $extension && $enabled) {
-                $mappings['ArtemisoLoggable'] = $config['mappings']['loggable'];
+                $mappings['KoffCdeLoggable'] = $config['mappings']['loggable'];
             } else {
-                $container->removeDefinition('artemiso_doctrine_extra.extension_loggable_listener');
+                $container->removeDefinition('koff_cde.extension_loggable_listener');
+            }
+
+            if ('sortable' == $extension && $enabled) {
+                $mappings['KoffCdeSortable'] = $config['mappings']['sortable'];
+            } else {
+                $container->removeDefinition('koff_cde.extension_sortable_listener');
             }
 
             if ('tree' == $extension && $enabled) {
-                $mappings['ArtemisoTree'] = $config['mappings']['tree'];
+                $mappings['KoffCdeTree'] = $config['mappings']['tree'];
             }
 
             if ($container->hasDefinition($definitionKey) && $enabled) {
