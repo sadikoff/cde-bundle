@@ -5,11 +5,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="koff_cde.transliterator" class="Artemiso\DoctrineExtraBundle\Utils\Transliterator" />
+        <service id="koff_cde.transliterator" class="Koff\Bundle\CdeBundle\Utils\Transliterator" />
 
-        <service id="koff_cde.extension_translatable_listener" class="Artemiso\DoctrineExtraBundle\Listener\DoctrineExtensionTranslatableListener">
-            <argument type="service" id="koff.cde.listener.translatable"/>
-            <tag name="kernel.event_listener" event="kernel.request" method="onLateKernelRequest" priority="-10"/>
+        <service id="koff_cde.translatable_subscriber" class="Koff\Bundle\CdeBundle\EventSubscriber\TranslatableSubscriber">
+            <argument type="service" id="service_container"/>
+            <tag name="container.service_subscriber"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="koff_cde.extension_loggable_listener" class="Artemiso\DoctrineExtraBundle\Listener\DoctrineExtensionLoggableListener">
@@ -19,22 +20,26 @@
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
         </service>
 
-        <service id="koff_cde.listener.tree" class="Gedmo\Tree\TreeListener" public="false">
+        <service id="koff_cde.listener.tree" class="Gedmo\Tree\TreeListener">
             <tag name="doctrine.event_subscriber"/>
         </service>
-        <service id="koff_cde.listener.translatable" class="Gedmo\Translatable\TranslatableListener" public="false">
+
+        <service id="Gedmo\Translatable\TranslatableListener" alias="gedmo.listener.translatable" public="true"/>
+
+        <service id="gedmo.listener.translatable" class="Gedmo\Translatable\TranslatableListener">
             <call method="setDefaultLocale">
-                <argument>%locale%</argument>
+                <argument>%kernel.default_locale%</argument>
             </call>
             <call method="setTranslationFallback">
                 <argument>false</argument>
             </call>
             <tag name="doctrine.event_subscriber"/>
         </service>
-        <service id="koff_cde.listener.timestampable" class="Gedmo\Timestampable\TimestampableListener" public="false">
+
+        <service id="koff_cde.listener.timestampable" class="Gedmo\Timestampable\TimestampableListener">
             <tag name="doctrine.event_subscriber"/>
         </service>
-        <service id="koff_cde.listener.sluggable" class="Gedmo\Sluggable\SluggableListener" public="false">
+        <service id="koff_cde.listener.sluggable" class="Gedmo\Sluggable\SluggableListener">
             <tag name="doctrine.event_subscriber"/>
             <call method="setTransliterator">
                 <argument type="collection">
@@ -43,10 +48,10 @@
                 </argument>
             </call>
         </service>
-        <service id="koff_cde.listener.sortable" class="Gedmo\Sortable\SortableListener" public="false">
+        <service id="koff_cde.listener.sortable" class="Gedmo\Sortable\SortableListener">
             <tag name="doctrine.event_subscriber"/>
         </service>
-        <service id="koff_cde.listener.loggable" class="Gedmo\Loggable\LoggableListener" public="false">
+        <service id="koff_cde.listener.loggable" class="Gedmo\Loggable\LoggableListener">
             <tag name="doctrine.event_subscriber"/>
         </service>
     </services>

@@ -22,7 +22,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class KoffCdeBundleExtension extends Extension implements PrependExtensionInterface
+class KoffCdeExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -44,7 +44,7 @@ class KoffCdeBundleExtension extends Extension implements PrependExtensionInterf
 
         $mappings = [];
 
-        foreach ($config['listeners'] as $extension => $enabled) {
+        foreach ($config['features'] as $extension => $enabled) {
             $definitionKey = 'koff_cde.listener.'.$extension;
 
             if ('translatable' == $extension && $enabled) {
@@ -85,7 +85,7 @@ class KoffCdeBundleExtension extends Extension implements PrependExtensionInterf
         }
 
         if (!empty($injectConfig)) {
-            $container->loadFromExtension('doctrine', $injectConfig);
+            $container->prependExtensionConfig('doctrine', $injectConfig);
         }
     }
 }

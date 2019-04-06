@@ -25,7 +25,9 @@
     },
     "require": {
         "php": "^7.1",
+        "doctrine/doctrine-bundle": "^1.6.10",
         "gedmo/doctrine-extensions": "~2.4",
+        "doctrine/orm": "^2.5.11",
         "symfony/config": "^4.0",
         "symfony/dependency-injection": "^4.0",
         "symfony/http-kernel": "^4.0"
