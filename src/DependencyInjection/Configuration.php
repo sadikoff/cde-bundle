@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Koff CdeBundle package.
+ * This file is part of the koff/cde-bundle package.
  *
  * (c) Vladimir Sadicov <sadikoff@gmail.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\CdeBundle\DependencyInjection;
+namespace Koff\CdeBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -17,7 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('koff_cde');
         $rootNode = $treeBuilder->getRootNode();
@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function addMappingsSection(ArrayNodeDefinition $rootNode)
+    private function addMappingsSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -42,7 +42,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('alias')->defaultValue('Gedmo')->end()
                                 ->booleanNode('is_bundle')->defaultFalse()->end()
                                 ->scalarNode('prefix')->defaultValue('Gedmo\Translatable\Entity')->end()
-                                ->scalarNode('dir')->defaultValue('%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Translatable/Entity')->end()
+                                ->scalarNode('dir')->defaultValue('%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Translatable/Entity')->end()
                             ->end()
                         ->end()
                         ->arrayNode('loggable')
@@ -52,7 +52,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('alias')->defaultValue('Gedmo')->end()
                                 ->booleanNode('is_bundle')->defaultFalse()->end()
                                 ->scalarNode('prefix')->defaultValue('Gedmo\Loggable\Entity')->end()
-                                ->scalarNode('dir')->defaultValue('%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Loggable/Entity')->end()
+                                ->scalarNode('dir')->defaultValue('%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity')->end()
                             ->end()
                         ->end()
                         ->arrayNode('sortable')
@@ -62,7 +62,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('alias')->defaultValue('Gedmo')->end()
                                 ->booleanNode('is_bundle')->defaultFalse()->end()
                                 ->scalarNode('prefix')->defaultValue('Gedmo\Sortable\Entity')->end()
-                                ->scalarNode('dir')->defaultValue('%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Sortable/Entity')->end()
+                                ->scalarNode('dir')->defaultValue('%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Sortable/Entity')->end()
                             ->end()
                         ->end()
                         ->arrayNode('tree')
@@ -72,7 +72,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('alias')->defaultValue('Gedmo')->end()
                                 ->booleanNode('is_bundle')->defaultFalse()->end()
                                 ->scalarNode('prefix')->defaultValue('Gedmo\Tree\Entity')->end()
-                                ->scalarNode('dir')->defaultValue('%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Tree/Entity')->end()
+                                ->scalarNode('dir')->defaultValue('%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Tree/Entity')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -81,7 +81,7 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addFeaturesSection(ArrayNodeDefinition $rootNode)
+    private function addFeaturesSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()

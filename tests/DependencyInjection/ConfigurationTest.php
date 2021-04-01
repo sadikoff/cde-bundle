@@ -1,66 +1,75 @@
 <?php
 
-namespace Koff\Bundle\CdeBundle\Test\DependencyInjection;
+/*
+ * This file is part of the Koff CdeBundle package.
+ *
+ * (c) Vladimir Sadicov <sadikoff@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use Koff\Bundle\CdeBundle\DependencyInjection\Configuration;
+namespace Koff\CdeBundle\Tests\DependencyInjection;
+
+use Koff\CdeBundle\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
 class ConfigurationTest extends TestCase
 {
-    public function testDefaultConfig()
+    public function testDefaultConfig(): void
     {
         $processor = new Processor();
-        $config    = $processor->processConfiguration(new Configuration(), []);
+        $config = $processor->processConfiguration(new Configuration(), []);
 
-        $this->assertEquals(self::getBundleDefaultConfig(), $config);
+        self::assertEquals(self::getBundleDefaultConfig(), $config);
     }
 
-    private static function getBundleDefaultConfig()
+    private static function getBundleDefaultConfig(): array
     {
         return [
             'mappings' => [
                 'translatable' => [
-                    'type'      => 'annotation',
-                    'alias'     => 'Gedmo',
+                    'type' => 'annotation',
+                    'alias' => 'Gedmo',
                     'is_bundle' => false,
-                    'prefix'    => 'Gedmo\\Translatable\\Entity',
-                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
+                    'prefix' => 'Gedmo\\Translatable\\Entity',
+                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
                 ],
-                'loggable'     => [
-                    'type'      => 'annotation',
-                    'alias'     => 'Gedmo',
+                'loggable' => [
+                    'type' => 'annotation',
+                    'alias' => 'Gedmo',
                     'is_bundle' => false,
-                    'prefix'    => 'Gedmo\\Loggable\\Entity',
-                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Loggable/Entity',
+                    'prefix' => 'Gedmo\\Loggable\\Entity',
+                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Loggable/Entity',
                 ],
-                'sortable'     => [
-                    'type'      => 'annotation',
-                    'alias'     => 'Gedmo',
+                'sortable' => [
+                    'type' => 'annotation',
+                    'alias' => 'Gedmo',
                     'is_bundle' => false,
-                    'prefix'    => 'Gedmo\\Sortable\\Entity',
-                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Sortable/Entity',
+                    'prefix' => 'Gedmo\\Sortable\\Entity',
+                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Sortable/Entity',
                 ],
-                'tree'         => [
-                    'type'      => 'annotation',
-                    'alias'     => 'Gedmo',
+                'tree' => [
+                    'type' => 'annotation',
+                    'alias' => 'Gedmo',
                     'is_bundle' => false,
-                    'prefix'    => 'Gedmo\\Tree\\Entity',
-                    'dir'       => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Tree/Entity',
+                    'prefix' => 'Gedmo\\Tree\\Entity',
+                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Tree/Entity',
                 ],
             ],
             'features' => [
-                'blameable'           => false,
-                'ip_traceable'        => false,
-                'loggable'            => false,
-                'sluggable'           => false,
-                'soft_deletable'      => false,
-                'timestampable'       => false,
-                'translatable'        => false,
-                'tree'                => false,
-                'uploadable'          => false,
-                'sortable'            => false,
-                'references'          => false,
+                'blameable' => false,
+                'ip_traceable' => false,
+                'loggable' => false,
+                'sluggable' => false,
+                'soft_deletable' => false,
+                'timestampable' => false,
+                'translatable' => false,
+                'tree' => false,
+                'uploadable' => false,
+                'sortable' => false,
+                'references' => false,
                 'reference_integrity' => false,
             ],
         ];

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Koff CdeBundle package.
+ * This file is part of the koff/cde-bundle package.
  *
  * (c) Vladimir Sadicov <sadikoff@gmail.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Koff\Bundle\CdeBundle\DependencyInjection;
+namespace Koff\CdeBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -27,11 +27,11 @@ class KoffCdeExtension extends Extension implements PrependExtensionInterface
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $configs = $container->getExtensionConfig($this->getAlias());
         $config = $this->processConfiguration(new Configuration(), $configs);
@@ -47,25 +47,25 @@ class KoffCdeExtension extends Extension implements PrependExtensionInterface
         foreach ($config['features'] as $extension => $enabled) {
             $definitionKey = 'koff_cde.listener.'.$extension;
 
-            if ('translatable' == $extension && $enabled) {
+            if ('translatable' === $extension && $enabled) {
                 $mappings['KoffCdeTranslatable'] = $config['mappings']['translatable'];
             } else {
                 $container->removeDefinition('koff_cde.extension_translatable_listener');
             }
 
-            if ('loggable' == $extension && $enabled) {
+            if ('loggable' === $extension && $enabled) {
                 $mappings['KoffCdeLoggable'] = $config['mappings']['loggable'];
             } else {
                 $container->removeDefinition('koff_cde.extension_loggable_listener');
             }
 
-            if ('sortable' == $extension && $enabled) {
+            if ('sortable' === $extension && $enabled) {
                 $mappings['KoffCdeSortable'] = $config['mappings']['sortable'];
             } else {
                 $container->removeDefinition('koff_cde.extension_sortable_listener');
             }
 
-            if ('tree' == $extension && $enabled) {
+            if ('tree' === $extension && $enabled) {
                 $mappings['KoffCdeTree'] = $config['mappings']['tree'];
             }
 
