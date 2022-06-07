@@ -4,12 +4,17 @@ if (!file_exists(__DIR__.'/src')) {
     exit(0);
 }
 
-$finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__.'/src')
+$finder = (new PhpCsFixer\Finder())
+    ->in([
+        __DIR__.'/src',
+        __DIR__.'/tests',
+    ])
 ;
 
-return PhpCsFixer\Config::create()
-    ->setRules(array(
+return (new PhpCsFixer\Config())
+    ->setRules([
+        '@PHP81Migration' => true,
+        '@PHPUnit84Migration:risky' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -25,7 +30,7 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF
         ]
-    ))
+    ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)
 ;

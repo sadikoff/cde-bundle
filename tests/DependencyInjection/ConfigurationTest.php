@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Koff CdeBundle package.
+ * This file is part of the koff/cde-bundle package.
  *
  * (c) Vladimir Sadicov <sadikoff@gmail.com>
  *
@@ -34,28 +34,28 @@ class ConfigurationTest extends TestCase
                     'alias' => 'Gedmo',
                     'is_bundle' => false,
                     'prefix' => 'Gedmo\\Translatable\\Entity',
-                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
+                    'dir' => '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Translatable/Entity',
                 ],
                 'loggable' => [
                     'type' => 'annotation',
                     'alias' => 'Gedmo',
                     'is_bundle' => false,
                     'prefix' => 'Gedmo\\Loggable\\Entity',
-                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Loggable/Entity',
+                    'dir' => '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity',
                 ],
                 'sortable' => [
                     'type' => 'annotation',
                     'alias' => 'Gedmo',
                     'is_bundle' => false,
                     'prefix' => 'Gedmo\\Sortable\\Entity',
-                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Sortable/Entity',
+                    'dir' => '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Sortable/Entity',
                 ],
                 'tree' => [
                     'type' => 'annotation',
                     'alias' => 'Gedmo',
                     'is_bundle' => false,
                     'prefix' => 'Gedmo\\Tree\\Entity',
-                    'dir' => '%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/src/Tree/Entity',
+                    'dir' => '%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Tree/Entity',
                 ],
             ],
             'features' => [
